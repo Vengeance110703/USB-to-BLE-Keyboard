@@ -1,4 +1,16 @@
-idf_component_register(SRCS "hid_host_example.c"
-                       INCLUDE_DIRS "."
-                       PRIV_REQUIRES usb esp_driver_gpio
-                       )
+idf_component_register(
+  SRCS
+  "hid_host_example.c"
+  "esp_hidd_prf_api.c"
+  "hid_dev.c"
+  "hid_device_le_prf.c"
+  INCLUDE_DIRS
+  "."
+  PRIV_REQUIRES
+  usb
+  esp_driver_gpio
+  bt
+  nvs_flash
+  esp_timer)
+
+target_compile_options(${COMPONENT_LIB} PRIVATE -Wno-unused-const-variable)
